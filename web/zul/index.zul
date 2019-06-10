@@ -7,7 +7,7 @@
         background-color:green;
         } 
     </style>
-<window id="winUtama" title="Mahasiswa" closable="false" apply="ctrl.index_" width="800px"
+<window id="winUtama" title="Mahasiswates" closable="false" apply="ctrl.index_" width="800px"
 class="css">
     <grid>
         <columns>
