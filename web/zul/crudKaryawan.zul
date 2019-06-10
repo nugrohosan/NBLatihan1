@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="winUtamaCrud" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+
+    <div align="center">
+        <window id="winUtamaCrud" title="Edit Data Mahasiswa" closable="true" apply="ctrl.crudKaryawan_"
+            width="500px" position="top" mode="modal" >
+            <grid>
+                <columns>
+                    <column width="100px" align="right"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Nama"/>
+                        <textbox id="txtNama" width="300px" value="@{winUtamaCrud$composer.tbKaryawan.nama,load-after='winUtamaCrud.onCreate'}"/>
+                    </row>
+                    <row>
+                        <label value="Barang"/>
+                        <textbox id="txtBarang" width="300px" value="@{winUtamaCrud$composer.tbKaryawan.barang,load-after='winUtamaCrud.onCreate'}"/>
+                    </row>
+                    <row>
+                        <label value="Jumlah"/>
+                        <intbox id="txtJumlah" width="300px" value="@{winUtamaCrud$composer.tbKaryawan.jumlah,load-after='winUtamaCrud.onCreate'}"/>
+                    </row>
+                    <row>
+                        <label value="Tanggal"/>
+                        <datebox id="dtTglLhr" width="80px" format="dd-MM-yyyy"/>
+                    </row>
+                    <row>
+                        <label value="Jenis Kelamin"/>
+                        <combobox id="cbJenisKelamin" autodrop="true" readonly="false"
+                        model="@{winUtamaCrud$composer.lstJenisKelamin,load-after='winUtamaCrud.onCreate'}"
+                        value="@{winUtamaCrud$composer.tbKaryawan.idJenisKelamin,converter='converter_.combobox_value',
+                        load-after='winUtamaCrud.onCreate'}">
+                            <comboitem forEach="@{winUtamaCrud$composer.lstJenisKelamin}" self="@{each='tbJenisKelamin'}"
+                            value="@{tbJenisKelamin.idJenisKelamin}" label="@{tbJenisKelamin.namaJenisKelamin}"/>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="Status"/>
+                        <radiogroup id="rdStatus">
+                            <radio label="Tidak"/>
+                            <radio label="Ya"/>
+                        </radiogroup>
+                    </row>
+                </rows>
+            </grid>
+            <button label="Simpan" id="btnSimpan" image="../image/save.png"/>
+        </window>
+    </div>
+</zk>

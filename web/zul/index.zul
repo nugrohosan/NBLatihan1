@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="winUtama" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <style src="/css/mycss.css"/>
+    <style>
+        .warna{
+        background-color:green;
+        } 
+    </style>
+<window id="winUtama" title="Mahasiswa" closable="false" apply="ctrl.index_" width="800px"
+class="css">
+    <grid>
+        <columns>
+            <column width="100px" align="right"/>            
+            <column width="100px" align="left"/>
+
+        </columns>
+        <rows>
+            <row>    
+                <label value="Nama :" style="color:red;background-color:green"/>
+                <textbox id="txtNama" width="200px"/>    
+                <button id="btnCari" image="../image/cari3.png"
+                    hoverImage="../image/cari3.png" />
+            </row>
+            <row>    
+                <label value="Barang :"/>
+                <textbox id="txtBarang" width="200px"/>  
+            </row>
+        </rows>
+    </grid>
+        
+    <vbox>
+        
+    <label id="lblJml"/>
+    <hbox>
+        
+        <button id="btnAdd" label="Add" mold="os" image="../image/add.png" hoverImage="../image/add2.png"/>
+        <button id="btnEdit" label="Edit" mold="os" image="../image/edit.png"/>
+        <button id="btnHapus" label="Hapus" mold="os" image="../image/delete.png"/>
+        <button id="btnRefresh" label="Refresh" mold="os" image="../image/refresh.png"/>    
+        <button id="btnTutup" label="Tutup" mold="os" image="../image/tutup.png" hoverImage="../image/tutup2.png"/>
+
+    </hbox>
+    </vbox>
+    <listbox id="lsbDaftar"  width="800px"
+        model="@{winUtama$composer.lstVKaryawan,load-after='winUtama.onCreate,txtNama.onOK,btnRefresh.onClick,btnCari.onClick,txtBarang.onOK,btnHapus.onClick'}"
+        selectedItem="@{winUtama$composer.tbVKaryawan}">
+        <listhead>
+            <listheader label="Nama" width="250px"/>            
+            <listheader label="Barang" width="250px"/>            
+            <listheader label="Jumlah" width="100px"/>         
+            <listheader label="Tanggal Lahir" width="100px"/>
+            <listheader label="Jenis Kelamin" width="100px"/>
+
+
+        </listhead>
+        <listitem forEach="@{winUtama$composer.lstVKaryawan}" self="@{each='tbVKaryawan'}" label="@{tbVKaryawan}">
+            <listcell label="@{tbVKaryawan.nama}" />            
+            <listcell label="@{tbVKaryawan.barang}" />         
+            <listcell label="@{tbVKaryawan.jumlah}" />        
+            <listcell label="@{tbVKaryawan.tglLahir,converter='converter_.tanggal_string'}" />        
+            <listcell label="@{tbVKaryawan.namaJenisKelamin}" />  
+        </listitem>
+    </listbox>
+</window>
+</zk>
